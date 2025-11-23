@@ -3,7 +3,8 @@ Concept idea to create a generic icalender to BACnet gateway.
 
 ---
 
-## Python Setup
+<details>
+<summary>🐍 Python Setup</summary>
 
 Create a virtual environment:
 ```bash
@@ -15,9 +16,29 @@ Packages:
 pip install requests icalendar recurring-ical-events python-dateutil tzdata bacpypes3
 ```
 
+### Args
+
+```bash
+python scripts/ical_event_test.py \
+    --url "YOUR_ICS_URL" \
+    --tz America/Chicago \
+    --max-events 10 \
+    --poll-minutes 0
+```
+
+Useful options:
+
+* `--poll-minutes 10` → check feed every 10 minutes
+* `--no-debug` → quiet mode
+* `--window-days 180` → expand events farther ahead
+
+</details>
+
 ---
 
-## 🧪 Test With Google’s US Holiday Calendar
+<details>
+<summary>🧪 Test With Google’s US Holiday Calendar</summary>
+
 
 Run the test script which also works fine on Windows in PowerShell:
 
@@ -99,35 +120,110 @@ Next 10 events:
 ------------------------------------------------------------
 Next event begins in: 3d 14h 32m
 ```
-
-CLI:
-```bash
-python scripts/ical_event_test.py \
-    --url "YOUR_ICS_URL" \
-    --tz America/Chicago \
-    --max-events 10 \
-    --poll-minutes 0
-```
-
-Useful options:
-
-* `--poll-minutes 10` → check feed every 10 minutes
-* `--no-debug` → quiet mode
-* `--window-days 180` → expand events farther ahead
+</details>
 
 ---
 
-## Run a test on your own ICS calender
+<details>
+<summary>🗓️ Run a test on your own ICS calender</summary>
 
 To get your own ICS URL from Google Calendar:
 
 1. Calendar Settings → **Integrate Calendar**
 2. Copy **Secret address in iCal format**
-   (Treat this like a password)
+   (Treat this like a password)  
 
-   
+![Leave Temp Snip](https://github.com/bbartling/icalender-to-bacnet/blob/develop/googleSnip.png)  
 
-## 🚀 Run the BACnet Gateway (POC)
+I made an additional Testing Schedule on my personal Google account which is a recurring event named `Occupied`:  
+
+![Leave Temp Snip](https://github.com/bbartling/icalender-to-bacnet/blob/develop/bensTestCalenderSnip.png)  
+
+Tested on Windows in PowerShell:
+
+```
+> python scripts/ical_event_test.py --url "https://calendar.google.com/calendar/ical/4d67f1779bf6d9c1c1e3615a449f2f2469d0d4aa0136faa16a7eeebd0ae1ebbe%40group.calendar.google.com/private-d58ed4b8a80b7356cbac2e74ae596c0a/basic.ics"
+
+POLL #1 at 2025-11-23 09:53:04 CST
+[DEBUG] HTTP status: 200
+[DEBUG] Downloaded 957 bytes.
+
+=== Upcoming Events ===
+
+Next 10 events:
+------------------------------------------------------------
+ 1. Occupied
+    When: 2025-11-24 08:00 CST
+    Ends: 2025-11-24 17:00 CST
+    In:   22h 6m
+    Dur:  540 min
+
+ 2. Occupied
+    When: 2025-11-25 08:00 CST
+    Ends: 2025-11-25 17:00 CST
+    In:   1d 22h 6m
+    Dur:  540 min
+
+ 3. Occupied
+    When: 2025-11-26 08:00 CST
+    Ends: 2025-11-26 17:00 CST
+    In:   2d 22h 6m
+    Dur:  540 min
+
+ 4. Occupied
+    When: 2025-11-27 08:00 CST
+    Ends: 2025-11-27 17:00 CST
+    In:   3d 22h 6m
+    Dur:  540 min
+
+ 5. Occupied
+    When: 2025-11-28 08:00 CST
+    Ends: 2025-11-28 17:00 CST
+    In:   4d 22h 6m
+    Dur:  540 min
+
+ 6. Occupied
+    When: 2025-12-01 08:00 CST
+    Ends: 2025-12-01 17:00 CST
+    In:   7d 22h 6m
+    Dur:  540 min
+
+ 7. Occupied
+    When: 2025-12-02 08:00 CST
+    Ends: 2025-12-02 17:00 CST
+    In:   8d 22h 6m
+    Dur:  540 min
+
+ 8. Occupied
+    When: 2025-12-03 08:00 CST
+    Ends: 2025-12-03 17:00 CST
+    In:   9d 22h 6m
+    Dur:  540 min
+
+ 9. Occupied
+    When: 2025-12-04 08:00 CST
+    Ends: 2025-12-04 17:00 CST
+    In:   10d 22h 6m
+    Dur:  540 min
+
+10. Occupied
+    When: 2025-12-05 08:00 CST
+    Ends: 2025-12-05 17:00 CST
+    In:   11d 22h 6m
+    Dur:  540 min
+
+------------------------------------------------------------
+Next event begins in: 22h 6m
+
+```
+
+</details>
+
+---
+
+<details>
+<summary>🤖 Run the BACnet Gateway (POC)</summary>
+
 
 * ***NOT FINISHED PROOF OF CONCEPT***
 
@@ -191,6 +287,8 @@ If the iCal feed has no future events:
 
 * schedule remains "unoccupied"
 * next-event values revert to defaults
+
+</details>
 
 ---
 
