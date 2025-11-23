@@ -19,18 +19,6 @@ pip install requests icalendar recurring-ical-events python-dateutil tzdata bacp
 
 ## 🧪 Test With Google’s US Holiday Calendar
 
-To get your own ICS URL from Google Calendar:
-
-1. Calendar Settings → **Integrate Calendar**
-2. Copy **Secret address in iCal format**
-   (Treat this like a password)
-
-Or use the public US holiday feed from Google:
-
-```
-https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics
-```
-
 Run the test script which also works fine on Windows in PowerShell:
 
 ```bash
@@ -128,6 +116,16 @@ Useful options:
 * `--window-days 180` → expand events farther ahead
 
 ---
+
+## Run a test on your own ICS calender
+
+To get your own ICS URL from Google Calendar:
+
+1. Calendar Settings → **Integrate Calendar**
+2. Copy **Secret address in iCal format**
+   (Treat this like a password)
+
+   
 
 ## 🚀 Run the BACnet Gateway (POC)
 
